@@ -91,4 +91,73 @@ void Visa(Student& s) {
     }
     
 }
+void TuitionFee(Student& s) {
+    cout << "\n Tuition Fee \n";
+    cout << "Student makes payment\n";
+    do {
+        s.feePaid = askYesNo("Fee paid?");
+        if (!s.feePaid) cout << "Wait until payment done\n";
+    } while (!s.feePaid);
+
+    cout << "Payment confirmed \n";
+}
+
+void Accommodation(Student& s) { 
+    cout << "\n Accommodation (A) \n";
+    s.wantsAccommodation = askYesNo("Ask for accommodation?");
+    if (s.wantsAccommodation) {
+        s.accommodation = askLine("Assign accommodation (room/hostel name): ");
+        cout << "Accommodation assigned: " << s.accommodation << "\n";
+    } else {
+        cout << "No accommodation requested.\n";
+    }
+}
+
+void PersonalTutor(Student& s) { 
+    cout << "\n Personal Tutor \n";
+    if (s.tutor.empty())
+        s.tutor = askLine("Assign tutor (enter tutor name): ");
+    cout << "Student meets Personal Tutor " << s.tutor << ".\n";
+}
+void ExtraCourse(Student& s) { 
+    cout << "\n Extra Course \n";
+    s.hasExtraCredits = askYesNo("Has extra credits?");
+    if (s.hasExtraCredits) {
+        s.extraCourse = askLine("Choose additional course: ");
+        cout << "Additional course chosen: " << s.extraCourse << "\n";
+    } else {
+        cout << "No extra course selected.\n";
+    }
+    
+}
+
+
+void FullyRegistered(const Student& s) {
+    cout << "\n Fully Registered \n";
+    cout << "Completed Registration for " << s.name << " (" << s.program << ")\n";
+    cout << "Summary:\n";
+    cout << "  Verified: " << (s.verified ? "Yes" : "No") << "\n";
+    cout << "  Visa: " << (s.needsVisa ? (s.visaApplied ? "Applied" : "Required (not applied)") : "Not required") << "\n";
+    cout << "  Fee Paid: " << (s.feePaid ? "Yes" : "No") << "\n";
+    cout << "  Accommodation: " << (s.wantsAccommodation ? s.accommodation : string("Not requested")) << "\n";
+    cout << "  Tutor: " << (s.tutor.empty() ? string("Not assigned") : s.tutor) << "\n";
+    cout << "  Extra Course: " << (s.hasExtraCredits ? s.extraCourse : string("None")) << "\n";
+    cout << "Registration Completed \n";
+}
+
+int main() {
+    Student s;
+
+    
+    Registration(s);       
+    AdmissionOffice(s);    
+    Visa(s);               
+    TuitionFee(s);         
+    Accommodation(s);      
+    PersonalTutor(s);     
+    ExtraCourse(s);        
+    FullyRegistered(s);    
+
+    return 0;
+}
 
