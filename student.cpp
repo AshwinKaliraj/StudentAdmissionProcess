@@ -144,11 +144,11 @@ void FullyRegistered(const Student& s) {
     cout << "Registration Completed \n";
 }
 
-// Save to DB (CSV file)
+
 void DB(const Student& s) {
     bool writeHeader = false;
 
-    // check if file is empty
+    
     ifstream check("students.csv");
     if (!check.good() || check.peek() == ifstream::traits_type::eof()) {
         writeHeader = true;
@@ -195,7 +195,7 @@ void DB(const Student& s) {
     cout << "Student data saved to DB (students.csv)\n";
 }
 
-// Main program
+
 int main() {
     Student s;
 
