@@ -23,13 +23,12 @@ struct Student {
     string extraCourse;
 };
 
-// Clear leftover input when wrong type entered
+
 void clearLine() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-// Ask Yes/No
 bool askYesNo(const string& prompt) {
     while (true) {
         cout << prompt << " (y/n): ";
@@ -42,16 +41,14 @@ bool askYesNo(const string& prompt) {
     }
 }
 
-// Ask line input
 string askLine(const string& prompt) {
     cout << prompt;
     string s;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clear leftover newline
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, s);
     return s;
 }
 
-// Registration process
 void Registration(Student& s) {
     cout << "\nRegistration Form \n";
     if (s.name.empty())  s.name  = askLine("Enter student name: ");
@@ -62,7 +59,7 @@ void Registration(Student& s) {
     cout << "Saved to Student Information DB \n";
 }
 
-// Admission office verification
+
 void AdmissionOffice(Student& s) {
     cout << "\n Admission Office Verification \n";
     cout << "Receive form for " << s.name << " (" << s.program << ")\n";
@@ -78,7 +75,6 @@ void AdmissionOffice(Student& s) {
     cout << "Verified\n";
 }
 
-// Visa process
 void Visa(Student& s) {
     cout << "\nVisa \n";
     s.needsVisa = askYesNo("Need visa?");
@@ -94,7 +90,6 @@ void Visa(Student& s) {
     }
 }
 
-// Tuition fee process
 void TuitionFee(Student& s) {
     cout << "\n Tuition Fee \n";
     cout << "Student makes payment\n";
@@ -105,19 +100,17 @@ void TuitionFee(Student& s) {
     cout << "Payment confirmed \n";
 }
 
-// Accommodation process
 void Accommodation(Student& s) {
     cout << "\n Accommodation \n";
     s.wantsAccommodation = askYesNo("Ask for accommodation?");
     if (s.wantsAccommodation) {
-        s.accommodation = askLine("Assign accommodation (room/hostel name): ");
+        s.accommodation = askLine("Assign accommodation (room/hostel ): ");
         cout << "Accommodation assigned: " << s.accommodation << "\n";
     } else {
         cout << "No accommodation requested.\n";
     }
 }
 
-// Assign personal tutor
 void PersonalTutor(Student& s) {
     cout << "\n Personal Tutor \n";
     if (s.tutor.empty())
@@ -125,7 +118,7 @@ void PersonalTutor(Student& s) {
     cout << "Student meets Personal Tutor " << s.tutor << ".\n";
 }
 
-// Extra course
+
 void ExtraCourse(Student& s) {
     cout << "\n Extra Course \n";
     s.hasExtraCredits = askYesNo("Has extra credits?");
@@ -137,7 +130,7 @@ void ExtraCourse(Student& s) {
     }
 }
 
-// Final summary
+
 void FullyRegistered(const Student& s) {
     cout << "\n Fully Registered \n";
     cout << "Completed Registration for " << s.name << " (" << s.program << ")\n";
