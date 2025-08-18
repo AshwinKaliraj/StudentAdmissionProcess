@@ -44,7 +44,7 @@ bool askYesNo(const string& prompt) {
 string askLine(const string& prompt) {
     cout << prompt;
     string s;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    if (cin.peek() == '\n') cin.ignore();
     getline(cin, s);
     return s;
 }
@@ -64,7 +64,7 @@ void AdmissionOffice(Student& s) {
     cout << "\n Admission Office Verification \n";
     cout << "Receive form for " << s.name << " (" << s.program << ")\n";
     do {
-        cout << "Checking details...\n";
+        cout << "Checking details\n";
         s.verified = askYesNo("Are details verified?");
         if (!s.verified) {
             cout << "Return form for correction. Please correct details\n";
@@ -148,7 +148,6 @@ void FullyRegistered(const Student& s) {
 void DB(const Student& s) {
     bool writeHeader = false;
 
-    
     ifstream check("students.csv");
     if (!check.good() || check.peek() == ifstream::traits_type::eof()) {
         writeHeader = true;
